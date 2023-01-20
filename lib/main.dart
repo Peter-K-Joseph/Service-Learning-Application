@@ -215,7 +215,11 @@ class _LoginEventState extends State<LoginEvent> {
                         enableFeedback: true,
                       ),
                       onPressed: () {
-                        login(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => login(context)),
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(

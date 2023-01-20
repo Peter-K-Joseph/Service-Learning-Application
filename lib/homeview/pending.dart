@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:servicelearningapp/homeview/filter.dart';
 import 'package:servicelearningapp/homeview/ideaview.dart';
 import 'package:servicelearningapp/homeview/others.dart';
 
@@ -35,7 +36,7 @@ class _PendingListState extends State<PendingList> {
     setState(
       () {
         data = ListView.builder(
-          itemCount: 2,
+          itemCount: 7,
           itemBuilder: (context, index) {
             return ListTile(
               title: Card(
@@ -91,6 +92,17 @@ class _PendingListState extends State<PendingList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.filter_list, color: Color(0xff175bed)),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FilterForm()),
+              );
+            },
+          ),
+        ],
         backgroundColor: const Color(0xffD8F6FF),
         title: const GradientText(
           text: "Pending",
@@ -105,7 +117,38 @@ class _PendingListState extends State<PendingList> {
       ),
       body: Container(
         decoration: const BoxDecoration(color: Color(0xffD8F6FF)),
-        child: RefreshIndicator(onRefresh: refresh, child: data),
+        child: SafeArea(
+          child: Column(
+            children: [
+              // search
+              Container(
+                margin: const EdgeInsets.only(
+                  left: 20,
+                  right: 20,
+                  top: 10,
+                  bottom: 10,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Icon(Icons.search),
+                    hintText: 'Search',
+                  ),
+                ),
+              ),
+              Expanded(
+                child: RefreshIndicator(
+                  onRefresh: refresh,
+                  child: data,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -9,21 +9,36 @@ class AcceptedList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => const Search()),
+              // );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.filter_list),
+            onPressed: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => const Filter()),
+              // );
+            },
+          ),
+        ],
         backgroundColor: const Color.fromARGB(255, 219, 255, 222),
-        title: Row(
-          children: const [
-            GradientText(
-              text: "Accepted",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w600,
-              ),
-              gradient: LinearGradient(
-                colors: [Color(0xff38b000), Color(0xff006400)],
-              ),
-            ),
-          ],
+        title: const GradientText(
+          text: "Accepted",
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.w600,
+          ),
+          gradient: LinearGradient(
+            colors: [Color(0xff38b000), Color(0xff006400)],
+          ),
         ),
       ),
       body: Container(
